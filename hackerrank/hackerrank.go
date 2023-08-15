@@ -170,6 +170,38 @@ func countApplesAndOranges(s int32, t int32, a int32, b int32, apples []int32, o
 	fmt.Println(orangeCount)
 }
 
+func sockMerchant(n int32, ar []int32) int32 {
+	sockCount := make(map[int32]int32)
+
+	for _, sock := range ar {
+		sockCount[sock]++
+	}
+
+	var totalPair int32
+	for _, count := range sockCount {
+		totalPair += (count / 2)
+	}
+
+	return totalPair
+}
+
+func countingValleys(steps int32, path string) int32 {
+	var up int32
+	var down int32
+
+	for _, step := range path {
+		if step == 'U' {
+			up++
+		} else if step == 'D' {
+			if up == 0 {
+				down++
+			}
+			up--
+		}
+	}
+	return down
+}
+
 func main() {
 	fmt.Println("Soal aVeryBigSum")
 	fmt.Println(aVeryBigSum([]int64{1000000001, 1000000002, 1000000003, 1000000004, 1000000005}))
@@ -228,4 +260,14 @@ func main() {
 	apples := []int32{-2, 2, 1}
 	oranges := []int32{5, -6}
 	countApplesAndOranges(s, t, a, b, apples, oranges)
+
+	println()
+
+	fmt.Println("Soal Interview Test sockMerchant")
+	fmt.Println(sockMerchant(9, []int32{10, 20, 20, 10, 10, 30, 50, 10, 20}))
+
+	println()
+
+	fmt.Println("Soal Interview Test countingValleys")
+	fmt.Println(countingValleys(8, "UDDDUDUU"))
 }
